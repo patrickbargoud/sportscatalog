@@ -1,0 +1,10 @@
+/
+/sports = showsports()
+/sport/sport_id/new = newsport()
+/sport/sport_id/edit = editsport()
+/sport/sport_id/delete = deletesport()
+/sport/sport_id = showitem()
+/sport/sport_id/item - showitem()
+/sport/sport_id/item/new = newitem()
+/sport/sport_id/item/item_id/edit = edititem()
+/sport/sport_id/item/item_id/delete = newitem()

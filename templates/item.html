@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styling.css') }}">
+	</head>
+
+	<body>
+		<nav>
+			<ul>
+				<li>
+					{%if 'username' not in session %}
+					<a class="button" href="{{url_for('showLogin')}}">Login </a>
+					{% else %}
+					<a class="button" href="{{url_for('gdisconnect')}}">Logout </a>
+					{% endif %}
+				</li>
+				<li><a href = "{{url_for('showAllSports')}}">Sports Catalog</a></li>
+			</ul>
+		</nav>
+		<div class = 'flash'>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul>
+				{% for message in messages %}
+				<li> <strong> {{ message }} </strong> </li>
+				{% endfor %}
+				</ul>
+				{% endif %}
+			{% endwith %}
+		</div>
+		<div class = 'pane'>
+			<div class = 'header'>
+				<h1>{{ sport.name }}</h1>
+			</div>
+			<br>
+			<a href = "{{url_for('newItem', sport_id = sport.id) }}">Add New Item</a>
+			<div class='columns'>
+				<div class='columnleft'>
+					<p1>Item Name<br/><br/></p1>
+					{% for item in item %}
+					<span class = 'itemname'><p2>{{item.name}}</p2></span><br/><br/>
+					{% endfor %}
+				</div>
+				<div class='columnright'>
+					<p1>Options<br/><br/></p1>
+					{% for item in item %}
+					<a href= "{{url_for('editItem', sport_id = sport.id, item_id=item.id)}}">Edit</a>
+					<a href= "{{url_for('deleteItem', sport_id = sport.id, item_id=item.id)}}">Delete</a><br/><br/>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

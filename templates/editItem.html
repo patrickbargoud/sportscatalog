@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styling.css') }}">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li>
+					{%if 'username' not in session %}
+					<a class="button" href="{{url_for('showLogin')}}">Login </a>
+					{% else %}
+					<a class="button" href="{{url_for('gdisconnect')}}">Logout </a>
+					{% endif %}
+				</li>
+				<li><a href = "{{url_for('showAllSports')}}">Sports Catalog</a></li>
+			</ul>
+		</nav>
+		<h1> Edit Item </h1>
+		<form action="{{ url_for('editItem', sport_id = item.sport.id, item_id=item.id)}}" method = 'post'>
+			<dl>
+				<dt>Name:</dt>
+					<dd><input type ='text' size='35' name='name' placeholder = '{{item.name }}'></dd>
+			</dl>
+			<input type='submit' value='Edit'>
+			<a href = "{{url_for('showItem', sport_id = sport_id)}}"> Cancel </a>
+		</form>
+	</body>
+</html>
